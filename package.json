@@ -5,7 +5,6 @@
   "description": "Like JSON.stringify but without the stringify part.",
   "version": "0.0.1",
   "license": "MIT",
-  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://git@github.com:stagas/json-objectify.git"
