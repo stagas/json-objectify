@@ -3,7 +3,7 @@
   "author": "stagas",
   "short": "stagas/json-objectify",
   "description": "Like JSON.stringify but without the stringify part.",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "private": true,
   "repository": {
