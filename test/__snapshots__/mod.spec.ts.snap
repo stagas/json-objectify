@@ -1,0 +1,535 @@
+
+exports[`objectify(obj) works 1`] = `
+Object {
+  "$r": 1,
+  "$t": "Object",
+  "$v": Object {
+    "foo": "bar",
+  },
+}
+`;
+
+exports[`objectify(obj) SharedArrayBuffer 1`] = `
+Object {
+  "$r": 1,
+  "$t": "Object",
+  "$v": Object {
+    "foo": Object {
+      "$r": 2,
+      "$t": "Float64Array",
+      "$v": Float64Array [
+        0,
+      ],
+    },
+  },
+}
+`;
+
+exports[`objectify(obj) SharedArrayBuffer 2`] = `
+Object {
+  "foo": Float64Array [
+    0,
+  ],
+}
+`;
+
+exports[`objectify(obj) ref SharedArrayBuffer 1`] = `
+Object {
+  "$r": 1,
+  "$t": "Object",
+  "$v": Object {
+    "foo": Object {
+      "$r": 2,
+      "$t": "Float64Array",
+      "$v": Float64Array [
+        0,
+      ],
+    },
+    "fooRef": Object {
+      "$p": 2,
+    },
+  },
+}
+`;
+
+exports[`objectify(obj) ref SharedArrayBuffer 2`] = `
+Object {
+  "foo": Float64Array [
+    0,
+  ],
+  "fooRef": Float64Array [
+    0,
+  ],
+}
+`;
+
+exports[`objectify(obj) arrays 1`] = `
+Object {
+  "$r": 1,
+  "$t": "Array",
+  "$v": Array [
+    1,
+    "foo",
+    null,
+  ],
+}
+`;
+
+exports[`objectify(obj) complex 1`] = `
+Object {
+  "$r": 1,
+  "$t": "Array",
+  "$v": Array [
+    Object {
+      "$r": 2,
+      "$t": "Object",
+      "$v": Object {
+        "a": 123,
+        "b": Object {
+          "$r": 3,
+          "$t": "Date",
+          "$v": "1970-01-01T00:00:00.123Z",
+        },
+        "c": Object {
+          "$r": 4,
+          "$t": "Map",
+          "$v": Array [
+            Object {
+              "$r": 5,
+              "$t": "Array",
+              "$v": Array [
+                1,
+                2,
+              ],
+            },
+            Object {
+              "$r": 6,
+              "$t": "Array",
+              "$v": Array [
+                3,
+                4,
+              ],
+            },
+          ],
+        },
+        "d": Object {
+          "$r": 7,
+          "$t": "Set",
+          "$v": Array [
+            1,
+            2,
+            3,
+            4,
+          ],
+        },
+      },
+    },
+  ],
+}
+`;
+
+exports[`objectify(obj) cross refs 1`] = `
+Object {
+  "$r": 1,
+  "$t": "Object",
+  "$v": Object {
+    "a": Object {
+      "$r": 2,
+      "$t": "Object",
+      "$v": Object {
+        "bar": Object {
+          "$r": 3,
+          "$t": "Object",
+          "$v": Object {
+            "b": Object {
+              "$p": 2,
+            },
+            "one": "two",
+          },
+        },
+        "hello": "world",
+      },
+    },
+    "b": Object {
+      "$p": 3,
+    },
+    "c": Object {
+      "$p": 2,
+    },
+    "d": Object {
+      "$r": 4,
+      "$t": "Object",
+      "$v": Object {
+        "a": Object {
+          "$p": 2,
+        },
+        "b": Object {
+          "$p": 3,
+        },
+      },
+    },
+  },
+}
+`;
+
+exports[`objectify(obj) cross refs 2`] = `
+Object {
+  "a": Object {
+    "bar": Object {
+      "b": [Circular],
+      "one": "two",
+    },
+    "hello": "world",
+  },
+  "b": Object {
+    "b": [Circular],
+    "one": "two",
+  },
+  "c": Object {
+    "bar": [Circular],
+    "hello": "world",
+  },
+  "d": Object {
+    "a": [Circular],
+    "b": [Circular],
+  },
+}
+`;
+
+exports[`objectify(obj) refs in maps and sets 1`] = `
+Object {
+  "$r": 1,
+  "$t": "Object",
+  "$v": Object {
+    "a": Object {
+      "$r": 2,
+      "$t": "Object",
+      "$v": Object {
+        "hello": "world",
+      },
+    },
+    "b": Object {
+      "$r": 3,
+      "$t": "Date",
+      "$v": "1970-01-01T00:00:00.123Z",
+    },
+    "c": Object {
+      "$r": 4,
+      "$t": "Map",
+      "$v": Array [
+        Object {
+          "$r": 5,
+          "$t": "Array",
+          "$v": Array [
+            1,
+            Object {
+              "$p": 2,
+            },
+          ],
+        },
+        Object {
+          "$r": 6,
+          "$t": "Array",
+          "$v": Array [
+            2,
+            Object {
+              "$r": 7,
+              "$t": "Array",
+              "$v": Array [
+                1,
+                2,
+                3,
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    "d": Object {
+      "$r": 8,
+      "$t": "Set",
+      "$v": Array [
+        1,
+        2,
+        Object {
+          "$p": 2,
+        },
+        4,
+      ],
+    },
+    "e": Object {
+      "$p": 7,
+    },
+    "f": Object {
+      "$r": 9,
+      "$t": "Array",
+      "$v": Array [
+        1,
+        2,
+        Object {
+          "$p": 2,
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`objectify(obj) refs in maps and sets 2`] = `
+Object {
+  "a": Object {
+    "hello": "world",
+  },
+  "b": 1970-01-01T00:00:00.123Z,
+  "c": Map {
+    1 => [Circular],
+    2 => Array [
+      1,
+      2,
+      3,
+    ],
+  },
+  "d": Set {
+    1,
+    2,
+    [Circular],
+    4,
+  },
+  "e": Array [
+    1,
+    2,
+    3,
+  ],
+  "f": Array [
+    1,
+    2,
+    [Circular],
+  ],
+}
+`;
+
+exports[`objectify(obj) refs in maps keys 1`] = `
+Object {
+  "$r": 1,
+  "$t": "Object",
+  "$v": Object {
+    "a": Object {
+      "$r": 2,
+      "$t": "Map",
+      "$v": Array [
+        Object {
+          "$r": 3,
+          "$t": "Array",
+          "$v": Array [
+            Object {
+              "$r": 4,
+              "$t": "Object",
+              "$v": Object {
+                "hello": "world",
+              },
+            },
+            Object {
+              "$r": 5,
+              "$t": "Object",
+              "$v": Object {
+                "one": "two",
+              },
+            },
+          ],
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`objectify(obj) refs in maps keys 2`] = `
+Object {
+  "a": Map {
+    Object {
+      "hello": "world",
+    } => Object {
+      "one": "two",
+    },
+  },
+}
+`;
+
+exports[`objectify(obj) preserves references 1`] = `
+Object {
+  "a": 123,
+  "b": Object {
+    "a": 2,
+  },
+  "c": 1970-01-01T00:00:00.123Z,
+  "d": Object {
+    "a": 2,
+  },
+}
+`;
+
+exports[`objectify(obj) preserves references 2`] = `
+Object {
+  "$r": 1,
+  "$t": "Object",
+  "$v": Object {
+    "a": 123,
+    "b": Object {
+      "$r": 2,
+      "$t": "Foo",
+      "$v": Object {
+        "a": 2,
+      },
+    },
+    "c": Object {
+      "$r": 3,
+      "$t": "Date",
+      "$v": "1970-01-01T00:00:00.123Z",
+    },
+    "d": Object {
+      "$p": 2,
+    },
+  },
+}
+`;
+
+exports[`objectify(obj) preserves references 3`] = `
+Object {
+  "a": 123,
+  "b": Object {
+    "a": 2,
+  },
+  "c": 1970-01-01T00:00:00.123Z,
+  "d": Object {
+    "a": 2,
+  },
+}
+`;
+
+exports[`objectify(obj) toJSON top 1`] = `
+Object {
+  "$r": 1,
+  "$t": "Foo",
+  "$v": Object {
+    "a": 2,
+  },
+}
+`;
+
+exports[`objectify(obj) toJSON top 2`] = `
+Object {
+  "a": 2,
+}
+`;
+
+exports[`objectify(obj) async complex 1`] = `
+Object {
+  "$r": 1,
+  "$t": "Object",
+  "$v": Object {
+    "a": Object {
+      "$r": 2,
+      "$t": "Object",
+      "$v": Object {
+        "hello": "world",
+      },
+    },
+    "b": Object {
+      "$r": 3,
+      "$t": "Date",
+      "$v": "1970-01-01T00:00:00.123Z",
+    },
+    "c": Object {
+      "$r": 4,
+      "$t": "Map",
+      "$v": Array [
+        Object {
+          "$r": 5,
+          "$t": "Array",
+          "$v": Array [
+            1,
+            Object {
+              "$p": 2,
+            },
+          ],
+        },
+        Object {
+          "$r": 6,
+          "$t": "Array",
+          "$v": Array [
+            2,
+            Object {
+              "$r": 7,
+              "$t": "Array",
+              "$v": Array [
+                1,
+                2,
+                3,
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    "d": Object {
+      "$r": 8,
+      "$t": "Set",
+      "$v": Array [
+        1,
+        2,
+        Object {
+          "$p": 2,
+        },
+        4,
+      ],
+    },
+    "e": Object {
+      "$p": 7,
+    },
+    "f": Object {
+      "$r": 9,
+      "$t": "Array",
+      "$v": Array [
+        1,
+        2,
+        Object {
+          "$p": 2,
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`objectify(obj) async complex 2`] = `
+Object {
+  "a": Object {
+    "hello": "world",
+  },
+  "b": 1970-01-01T00:00:00.123Z,
+  "c": Map {
+    1 => [Circular],
+    2 => Array [
+      1,
+      2,
+      3,
+    ],
+  },
+  "d": Set {
+    1,
+    2,
+    [Circular],
+    4,
+  },
+  "e": Array [
+    1,
+    2,
+    3,
+  ],
+  "f": Array [
+    1,
+    2,
+    [Circular],
+  ],
+}
+`;
