@@ -1,17 +1,17 @@
 import { asyncSerialReduce } from 'everyday-utils'
 
 interface Replacer {
-  (this: any, key: string, value: any): any
+  (this: unknown, key: string, value: unknown): unknown
 }
 
 interface Reviver {
-  (this: any, key: string, value: any): any
+  (this: unknown, key: string, value: unknown): unknown
 }
 
 export const createContext = (asIsCtors: any[] = []) => {
   const asIs = new Set(asIsCtors)
 
-  const objectify = (value: any, replacer: Replacer, top = true): any => {
+  const objectify = <T = unknown>(value: any, replacer: Replacer, top = true): T => {
     if (value === null) return value
 
     if (typeof value === 'object' && !(asIs.has(value.constructor))) {
@@ -32,11 +32,11 @@ export const createContext = (asIsCtors: any[] = []) => {
     return value
   }
 
-  const objectifyAsync = async (
+  const objectifyAsync = async <T = unknown>(
     value: any,
     replacer: Replacer,
     top = true,
-  ): Promise<any> => {
+  ): Promise<T> => {
     if (value === null) return value
 
     if (typeof value === 'object' && !(asIs.has(value.constructor))) {
@@ -63,7 +63,7 @@ export const createContext = (asIsCtors: any[] = []) => {
     return value
   }
 
-  const deobjectify = (value: any, reviver: Reviver, top = true): any => {
+  const deobjectify = <T = unknown>(value: any, reviver: Reviver, top = true): T => {
     if (value === null) return value
 
     if (typeof value === 'object' && !(asIs.has(value.constructor))) {

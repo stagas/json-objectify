@@ -20,7 +20,7 @@ describe('objectify(obj)', () => {
     }
     const str = objectify(obj, replacer(obj))
     expect(str).toMatchSnapshot()
-    const res = deobjectify(str, reviver([]))
+    const res = deobjectify<any>(str, reviver([]))
     expect(res).toMatchSnapshot()
     expect(res).toEqual(obj)
     expect(res.foo === obj.foo).toBe(true)
@@ -39,7 +39,7 @@ describe('objectify(obj)', () => {
     obj.fooRef = obj.foo
     const str = objectify(obj, replacer(obj))
     expect(str).toMatchSnapshot()
-    const res = deobjectify(str, reviver([]))
+    const res = deobjectify<any>(str, reviver([]))
     expect(res).toMatchSnapshot()
     expect(res).toEqual(obj)
     expect(res.foo === obj.foo).toBe(true)
